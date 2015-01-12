@@ -38,3 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+gem 'rspec-rails'
+gem 'capybara'
+gem 'shoulda-matchers'
+gem 'factory_girl'
