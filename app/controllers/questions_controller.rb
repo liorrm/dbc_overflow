@@ -21,6 +21,15 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+  end
+
   private
     # Using a private method to encapsulate the permissible parameters
     # is just a good pattern since you'll be able to reuse the same
