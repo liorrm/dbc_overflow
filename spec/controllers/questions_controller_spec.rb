@@ -1,24 +1,21 @@
 require 'rails_helper'
 
+# assert: generated instance variables
+
 RSpec.describe QuestionsController, :type => :controller do
 
   describe "GET index" do
+
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
     end
-  end
 
-  describe "GET questions" do
-    it "returns http success" do
-      get :questions
-      expect(response).to have_http_status(:success)
+    it "assigns questions to Question.all" do
+      get :index
+      expect(assigns(:questions)).to eq Question.all # assigns method is rails-specific
     end
 
-    it "lists all questions on the page" do
-      get :questions
-      expect(last_response.body).to include("hey there!")
-    end
-  end
 
+  end
 end
