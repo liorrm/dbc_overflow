@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to :root
     else
-      "poop"
+      render 'edit'
     end
   end
 
