@@ -1,0 +1,32 @@
+<h1><%= @question.title %></h1>
+<h3><%= @question.content %><h3>
+<br>
+<%= link_to 'Edit Question', edit_question_path(@question) %>
+ <%= link_to 'Destroy', question_path(@question),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+
+<h3>Answers:</h3>
+<br>
+<% @question.answers.each do |answer| %>
+  <h3><%= answer.title  %></h3>
+  <p><%= answer.content %></p>
+<% end %>
+
+<h3><%= link_to 'Back to Main', questions_path %></h3>
+
+<%= form_for([@question, @question.answers.build]) do |f| %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

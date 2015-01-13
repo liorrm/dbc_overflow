@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :questions
+  resources :questions do
+    resources :answers, except: [:destroy, :update]
+  end
+
+  ## resources method generates all 7 restful routes for the given symbol. Will not fail immediately if model doesn't exist
 
 
   root 'questions#index'
