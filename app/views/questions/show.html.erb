@@ -15,7 +15,7 @@
 
 <h3><%= link_to 'Back to Main', questions_path %></h3>
 
-<%= form_for :answer do |f| %>
+<%= form_for([@question, @question.answers.build]) do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
