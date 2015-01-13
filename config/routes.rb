@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :questions
 
 
-  # root 'questions#index'
+  root 'questions#index'
 
 
 
