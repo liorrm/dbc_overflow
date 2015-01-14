@@ -17,9 +17,7 @@ describe "Homepage", :js => true do ## js true allows javascript
     click_on "Create Question"
     expect(page).to have_content question[:title]
   end
-
-end
-
+ end
 # just implement these later, chamud. your situation is a little different from the lecture.
     #you can use id, name, or placeholder for Capybara forms. otherwise it wont find them.
 
