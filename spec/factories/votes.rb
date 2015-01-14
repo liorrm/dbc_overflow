@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :vote do
-    votable_id 1
+    id           1
+    votable_id   1
     votable_type "question"
-    direction "up"
+    direction    "up"
   end
 end
