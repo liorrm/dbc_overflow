@@ -1,5 +1,6 @@
-<h1><%= @question.title %></h1>
-<h3><%= @question.content %><h3>
+<h1><%= @question.title %></h1><h2>Votes: <%= @votes %></h2>
+<h3><%= @question.content %><h3><%= button_to 'Upvote', upvote_question_path(@question.id) %>
+<%= button_to 'Downvote', downvote_question_path(@question.id) %>
 <br>
 <%= link_to 'Edit Question', edit_question_path(@question) %>
  <%= link_to 'Destroy', question_path(@question),
@@ -9,8 +10,11 @@
 <h3>Answers:</h3>
 <br>
 <% @question.answers.each do |answer| %>
-  <h3><%= answer.title  %></h3>
+  <h3><%= answer.title  %></h3><h4><%= answer.votes.where(direction: :up).count - answer.votes.where(direction: :down).count  %></h4> <!-- I KNOW THIS IS TERRIBLE FORM!!!!!!!!!! -->
   <p><%= answer.content %></p>
+  <%= button_to 'Upvote', upvote_question_answer_path(@question.id, answer.id) %>
+  <%= button_to 'Downvote', downvote_question_answer_path(@question.id, answer.id) %>
+
 <% end %>
 
 <h3><%= link_to 'Back to Main', questions_path %></h3>
