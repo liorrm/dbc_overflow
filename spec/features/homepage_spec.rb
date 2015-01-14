@@ -7,16 +7,32 @@ describe "Homepage", :js => true do ## js true allows javascript
     expect(page).to have_content(question.title)
   end
 
-  it "user can click on create question link and be redirected"
-
-  it "user can create a question" do
-    question = FactoryGirl.attributes_for :question
-    visit '/questions/new'
-    fill_in "question_title", with: question[:title]
-    fill_in "question_content", with: question[:content]
-    click_on "Create Question"
-    expect(page).to have_content question[:title]
+  it "user can click on create question link and be redirected" do
+    visit root_path
+    click_link('Create Question')
+    expect(page).to have_content("Title Content")
   end
+
+  context "Voting" do
+
+    it "user can upvote a question" do
+      visit root_path
+      expect {
+        click_button('Upvote')
+      }.to change { page.first('h4').text.to_i }.by(1)
+
+    end
+
+    it "user can downvote a question" do
+      visit root_path
+      expect {
+        click_button('Downvote')
+      }.to change { page.first('h4').text.to_i }.by(-1)
+
+    end
+
+  end
+
  end
 # just implement these later, chamud. your situation is a little different from the lecture.
     #you can use id, name, or placeholder for Capybara forms. otherwise it wont find them.
