@@ -1,11 +1,9 @@
 <h1>Questions</h1>
 <h2><%= @quote %></h2>
 
-<ul>
-  <%= render "questions" %>
-</ul>
+<div id="questions"><%= render "questions" %></div>
 
 
 <%= link_to 'New Question', new_question_path, remote: true %>
 
-<div id="task-form" style="display:none;">
+<div id="question-form" style="display:none;">
