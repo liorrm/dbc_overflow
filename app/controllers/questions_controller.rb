@@ -14,6 +14,12 @@ class QuestionsController < ApplicationController
 
   def index ## get '/(questions)/' do
     @questions = Question.all
+    api = Github::Client.new
+    @quote = api.zen(ENV['GITHUB_TOKEN']).quotes
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show ## get '/questions/:id' do

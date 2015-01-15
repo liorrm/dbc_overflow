@@ -46,4 +46,6 @@ gem 'shoulda-matchers'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'database_cleaner'
+gem 'httparty'
+gem 'dotenv-rails'
 
