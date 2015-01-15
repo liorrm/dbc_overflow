@@ -36,12 +36,9 @@ class QuestionsController < ApplicationController
   end
 
   def create ## post '/questions' do
+    @questions = Question.all
     @question = Question.new(question_params)
-    if @question.save
-      redirect_to :root
-    else
-      render 'edit'
-    end
+    @question.save
   end
 
   def edit
