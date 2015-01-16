@@ -3,13 +3,21 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.find(params[:id])
     @question.votes.create(direction: :up)
-    redirect_to :root
+    # @votes = @question.votes
+    upvotes = @question.votes.where(direction: :up).count
+    downvotes = @question.votes.where(direction: :down).count
+    @votes = upvotes - downvotes
+    @questions = Question.all
   end
 
   def downvote
+    @questions = Question.all
     @question = Question.find(params[:id])
     @question.votes.create(direction: :down)
-    redirect_to :root
+    # @votes = @question.votes
+    upvotes = @question.votes.where(direction: :up).count ## numero
+    downvotes = @question.votes.where(direction: :down).count ## numero
+    @votes = upvotes - downvotes
   end
 
   def index ## get '/(questions)/' do
