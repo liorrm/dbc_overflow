@@ -1,6 +1,6 @@
-<h1><%= @question.title %></h1><h2>Votes: <%= @votes %></h2>
-<h3><%= @question.content %><h3><%= button_to 'Upvote', upvote_question_path(@question.id) %>
-<%= button_to 'Downvote', downvote_question_path(@question.id) %>
+<h1><%= @question.title %></h1><h2 id="votes"><%= render 'votes/vote' %></h2>
+<h3><%= @question.content %><h3><%= button_to 'Upvote', upvote_question_path(@question.id), remote: true %>
+<%= button_to 'Downvote', downvote_question_path(@question.id), remote: true %>
 <br>
 <%= link_to 'Edit Question', edit_question_path(@question) %>
  <%= link_to 'Destroy', question_path(@question),
