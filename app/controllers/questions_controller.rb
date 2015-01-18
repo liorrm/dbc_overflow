@@ -3,16 +3,25 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.find(params[:id])
     @question.votes.create(direction: :up)
-    redirect_to :root
+    # @votes = @question.votes
+    upvotes = @question.votes.where(direction: :up).count
+    downvotes = @question.votes.where(direction: :down).count
+    @votes = upvotes - downvotes
+    @questions = Question.all
   end
 
   def downvote
+    @questions = Question.all
     @question = Question.find(params[:id])
     @question.votes.create(direction: :down)
-    redirect_to :root
+    # @votes = @question.votes
+    upvotes = @question.votes.where(direction: :up).count ## numero
+    downvotes = @question.votes.where(direction: :down).count ## numero
+    @votes = upvotes - downvotes
   end
 
   def index ## get '/(questions)/' do
+    @question = Question.new
     @questions = Question.all
     api = Github::Client.new
     @quote = api.zen(ENV['GITHUB_TOKEN']).quotes
@@ -35,12 +44,9 @@ class QuestionsController < ApplicationController
   end
 
   def create ## post '/questions' do
+    @questions = Question.all
     @question = Question.new(question_params)
-    if @question.save
-      redirect_to :root
-    else
-      render 'edit'
-    end
+    @question.save
   end
 
   def edit
